@@ -12,4 +12,4 @@ def login_action(request):
         else:
             return render(request,"index.html",{'error':"username or password error!"})
     else:
-        return render(request, "index.html", {'error': "please use post mothod!"})
+        return render(request, "index.html", {'error': "please use post mothod!看看提交"})
