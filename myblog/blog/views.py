@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.contrib.sessions.backends.db import SessionStore
 # Create your views here.
 def index(request):
     return render(request,"index.html")
@@ -13,8 +14,7 @@ def login_action(request):
         if username=="admin" and password=="123456":
             response=HttpResponseRedirect('/blog/success_login/')
             #response.set_cookie('user',username,3600)
-            print username
-            response.session['user']=username
+            request.session['user']=username
             return response
         else:
             return render(request,"index.html",{'error':"username or password error!"})
@@ -23,8 +23,8 @@ def login_action(request):
 
 def success_login(request):
     #username=request.COOKIES.get('user','')
-    #username=request.session.get('user','')
-   # if username !="":
-        return render(request,'success.html',{'user':'username'})
-   # else:
-       # return render(request,"index.html",{'error':"please sgin in first!"})
+    username=request.session.get('user','')
+    if username !="":
+        return render(request,'success.html',{'user':username})
+    else:
+        return render(request,"index.html",{'error':"please sgin in first!"})
