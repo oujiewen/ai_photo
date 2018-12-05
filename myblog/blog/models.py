@@ -28,4 +28,4 @@ class Guest(models.Model):
         unique_together=("event","phone")
 
     def __unicode__(self):
-        return self.name
+        return self.realname

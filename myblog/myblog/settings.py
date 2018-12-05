@@ -76,8 +76,15 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '123.207.4.152',
+        'POST': '3306',
+        'NAME': 'test',
+        'USER': 'django_test',
+        'PASSWORD': 'a123456',
+        'OPYIONS':{
+            'init_commadd':"SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
