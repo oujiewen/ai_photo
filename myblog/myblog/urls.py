@@ -17,6 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from blog import views
 from django.conf.urls import url
+import settings
 
 
 urlpatterns = [

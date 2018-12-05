@@ -33,7 +33,7 @@ def login_action(request):
 def success_login(request):
     #username=request.COOKIES.get('user','')
     event_list=Event.objects.all()
-    print event_list
+    #print event_list
     username=request.session.get('user','')
     #if username !="":
     return render(request,'success.html',{'user':username,'events':event_list})

@@ -1,16 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<link rel="stylesheet" href="../../static/css_admin/admin_main.css" type="text/css"/>
+	<meta charset="UTF-8">
+	<title>发布会管理系统_登录</title>
 </head>
-<body>
-    <form method="post" action="/blog/login_action/">
-        <p>用户名：</p><input name="username" type="text" placeholder="username"><br>
-        <p>密码：</p><input name="password" type="password" placeholder="password"><br>
-        {{ error }}<br>
-        <button id="btn" type="submit">登录</button>
-        {% csrf_token %}
-    </form>
+<body style="background-color: #F2F2F2">
+<div class='login' style="background-color: #ffffff">
+	<form class='login_from clearfix'method="post" action="/blog/login_action/">
+		<div class='div_title'>
+			<p class="p_title">手机发布会管理后台</p>
+		</div>
+
+        <div class='div_input'>
+        	<input type="text" name="username" placeholder="请输入用户名">
+        </div>
+
+        <div class='div_input'>
+        	<input type="password" name="password" placeholder="请输入密码">
+        </div>
+
+        <div class="div_p">
+        <label>{{ error }}</label>
+        </div>
+
+        <div class='div_btn'>
+        	<button class="btn" id='login' type="sumit">登录</button>
+            {% csrf_token %}
+        </div>
+
+	</form>
+</div>
+
 </body>
 </html>
