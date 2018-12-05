@@ -1,13 +1,44 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div style="float:right">
-   <a>嘿！{{ user }} ,欢迎你！</a>
+   <a>嘿！{{ user }} ,欢迎你！</a> <a href="#">login out</a>
 </div>
 <h1>login success</h1>
+<table class="table table-striped">
+<thead>
+<tr>
+    <th>id</th>
+    <th>name</th>
+    <th>limit</th>
+    <th>status</th>
+    <th>start_time</th>
+    <th>createtime</th>
+    <th>action</th>
+</tr>
+</thead>
+<tbody>
+{% for event in events %}
+<tr>
+    <td>{{ event.id }}</td>
+    <td>{{ event.name }}</td>
+    <td>{{ event.limit }}</td>
+    <td>{{ event.status }}</td>
+    <td>{{ event.start_time }}</td>
+    <td>{{ event.create_time }}</td>
+    <td><a href="#">签到</a>/<a href="#">修改</a> </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
 </body>
 </html>

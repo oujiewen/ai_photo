@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.sessions.backends.db import SessionStore
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from blog.models import Event,Guest
 
 # Create your views here.
 def index(request):
@@ -31,8 +32,10 @@ def login_action(request):
 @login_required
 def success_login(request):
     #username=request.COOKIES.get('user','')
+    event_list=Event.objects.all()
+    print event_list
     username=request.session.get('user','')
     #if username !="":
-    return render(request,'success.html',{'user':username})
+    return render(request,'success.html',{'user':username,'events':event_list})
     #else:
      # return render(request,"index.html",{'error':"please sgin in first!"})

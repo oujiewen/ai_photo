@@ -10,8 +10,8 @@ class Event(models.Model):
     limit=models.IntegerField() #参加人数
     status=models.IntegerField() #状态
     address=models.CharField(max_length=200) #地址
-    start_time=models.DateTimeField('events time') #发布会时间
-    create_time=models.DateTimeField(auto_now=True) #创建时间
+    start_time=models.DateField('events time') #发布会时间
+    create_time=models.DateField(auto_now=True) #创建时间
 
     def __unicode__(self):
         return self.name
