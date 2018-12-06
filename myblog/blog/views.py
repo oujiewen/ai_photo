@@ -22,6 +22,7 @@ def login_action(request):
             response=HttpResponseRedirect('/blog/success_login/')
             #response.set_cookie('user',username,3600)
             request.session['user']=username
+            request.session.set_expiry(30)
             return response
         else:
             return render(request,"index.html",{'error':"username or password error!"})
@@ -39,3 +40,8 @@ def success_login(request):
     return render(request,'success.html',{'user':username,'events':event_list})
     #else:
      # return render(request,"index.html",{'error':"please sgin in first!"})
+
+@login_required
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/blog/index/')
