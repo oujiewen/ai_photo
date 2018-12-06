@@ -1,0 +1,78 @@
+.login{                                 #登录框
+	position: relative;
+	width: 350px;
+	height: 350px;
+	margin: 100px auto 0px;
+	border-radius:15px;
+}
+.div_title{
+	width: 250px;
+	height: 80px;
+	margin: 25px auto 0px;
+	font-size: 0px;
+}
+.div_input{
+	width: 250px;
+	height: 50px;
+	margin: 20px auto 0px;
+	font-size: 0px;
+	line-height: 0px;
+}
+.div_p{
+	width: 250px;
+	height: 20px;
+	margin: 2px auto 2px;
+}
+.div_btn{
+	width: 250px;
+	height: 50px;
+	margin: 0px auto 0px;
+	font-size: 20px;
+}
+
+
+
+.p_title{
+	font-size: 25px;
+	text-align: center;
+	line-height: 80px;
+}
+.P_erro{
+	line-height: 0px;
+	text-align: center;
+	background-color: green;
+}
+
+input{
+   border-radius:15px;
+   background-color: green;
+   width: 246px;
+   height: 44px;
+   line-height: 44x;
+   border: none;
+   background-color: #F2F2F2;
+}
+
+button{
+   width: 250px;
+   height: 50px;
+   line-height: 44x;
+   border-radius:50px;
+   background-color: red;
+   border: none;
+   font-size: 18px;
+   color: #fff;
+}
+label{
+	font-size: 14px;
+	float: right;
+	color: red;
+}
+.clearfix:before{
+	content: "";
+	display: table;
+}
+	button:hover{
+		background-color: #950A0A;
+	}
+
