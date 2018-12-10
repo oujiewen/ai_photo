@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url
 from blog import views
+from blog import query
 
 
 
@@ -26,5 +27,6 @@ urlpatterns = [
     url(r'^login_action/', views.login_action),
     url(r'^success_login/', views.success_login),
     url(r'^logout/', views.logout),
+    url(r'^query_event/', query.query_event),
 ]
 
