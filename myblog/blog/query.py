@@ -28,6 +28,13 @@ def deal_query_set(result):  #处理查询set[]转化成一个list，并return
     return list
 
 def query_event(request):
+    parmes=request.POST
+    list=['eid','name','limit''status','address','start_time_begin,''start_time_end']
+    print parmes
+    for key in parmes:
+        if key not in list:
+            return JsonResponse({'STATUS': -1, 'message': '不合法字段'}, json_dumps_params={'ensure_ascii': False})
+            break
     query_eid=request.POST.get('eid','')     #从requset获取查询的值
     query_name = request.POST.get('name', '')
     query_limit = request.POST.get('limit', '')
@@ -37,7 +44,7 @@ def query_event(request):
     query_start_time_end=request.POST.get('start_time_end')
     if request.method=='POST':     #判断调用的方法
         print "----in post----"
-        if query_eid!='' or query_name!='' or query_limit!='' or query_status!='' or query_address!='' or query_start_time_begin!='' or query_start_time_end!='': #判断是否传了查询参数
+        if query_eid or query_name or query_limit or query_status or query_address or query_start_time_begin or query_start_time_end: #判断是否传了查询参数
             print "----in filter----"
             filter={}      #添加filter参数
             if query_eid:
@@ -70,18 +77,14 @@ def query_event(request):
                 return JsonResponse({'total':p,'STATUS': 1, 'message': '查询成功','date':list}, json_dumps_params={'ensure_ascii': False})# 数据条数大于0返回条数和list
             else:
                 return JsonResponse({'STATUS': -1, 'message': '查询无结果'}, json_dumps_params={'ensure_ascii': False})#数据条数等于0，返回无结果
-        else:  #没有传参数查询所有数据
-            print "----in no pamres----"
-            try:
+        else:
+            if request.POST:
+                return JsonResponse({'STATUS': -1, 'message': '不合法字段'}, json_dumps_params={'ensure_ascii': False})
+            else:
                 result=Event.objects.all()
                 p=result.count()
-            except ObjectDoesNotExist, Argument:
-                print Argument
-            if p!=0:
                 list=deal_query_set(result)
-                return JsonResponse({'total':p,'STATUS': 1, 'message': '查询成功','date':list}, json_dumps_params={'ensure_ascii': False})
-            else:
-                return JsonResponse({'STATUS': -1, 'message': '查询无结果'}, json_dumps_params={'ensure_ascii': False})#数据条数等于0，返回无结果
+                return JsonResponse({'total':p,'STATUS': 1, 'message': '查询成功','date':list}, json_dumps_params={'ensure_ascii': False})# 数据条数大于0返回条数和list
     else:
-        print "----in get----"
+
         return JsonResponse({'STATUS': -2, 'message': '非法访问'}, json_dumps_params={'ensure_ascii': False})#提交方式部位post，返回非法访问
